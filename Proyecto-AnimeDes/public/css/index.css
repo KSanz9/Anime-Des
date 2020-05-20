@@ -1,0 +1,91 @@
+@font-face {
+    font-family: manga;
+    src: url('../fonts/manga.ttf');
+}
+@font-face {
+    font-family: odaiba;
+    src: url('../fonts/odaiba-script.zip');
+}
+body, html{
+    padding: 0;
+    margin: 0;
+}
+.cabecera{
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+.cabecera:first-child {
+    font-family: manga;
+    font-size: 20px;
+    width: 32%;
+    padding: 0% 0% 0% 5%;
+    height: 20px;
+}
+
+.cabecera h1{
+    border: 4px solid black;
+    border-radius: 6px;
+}
+
+.inicio{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 5px;
+    background-image: url("../img/img_cabezera.png");
+    background-repeat: no-repeat;
+    background-size: 100% 600px;
+    background-position: center;
+}
+.inicio > div{
+    text-align: center;
+    padding: 20px 0;
+}
+.login{   
+    margin-top: 0px;
+    font-family: manga;
+}
+.login input{
+    border-radius: 20px;
+    margin-bottom: 5px;
+}
+
+.login #botLogin{
+    font-family: manga;
+    border-radius: 9px;
+    box-shadow: 2px 2px 10px rgb(36, 34, 34) inset;
+}
+#registro{
+    margin-top: 0px;
+    border-radius: 9px;
+    font-family: manga;
+    height: 40px;
+    width: 40%;
+    box-shadow: 2px 2px 10px rgb(36, 34, 34) inset;
+  
+}
+
+/*Formulario de registro*/
+#form{
+    display: none;
+    position: relative;
+    left: 165%;
+}
+
+formulario{
+    width: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+formulario h1{
+    text-align: center;
+}
+
+formulario table {
+    margin: auto;
+}
+formulario input{
+    border-radius: 2px;
+    border: 1px solid cyan;
+    box-shadow:inset 3px 3px 1px cyan;
+}
