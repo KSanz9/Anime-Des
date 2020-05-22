@@ -1,0 +1,60 @@
+function validarUsuario() {
+  console.log("Entro en validarUsuarios");
+  let emailTrue = false;
+  let passwordTrue = false; 
+  let confirmacionPassword = false;
+  
+  const email = document.querySelector("input[name='email']");
+  const password = document.querySelector("input[name='password']");
+  const password2 = document.querySelector("input[name='password2']");
+
+  email.addEventListener('input', function(ev) {
+    const mail = ev.target,
+                 regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3,4})+$/;
+
+
+    if (regex.test(mail.value)) {
+        emailTrue = true; 
+    } else {
+      emailTrue = false; 
+      console.log("errorEmail");
+    }
+    
+  });
+
+
+  password.addEventListener('input', function(ev) {
+    const password = ev.target,
+                 regex = /^(?=.*\d)(?=.*[a-záéíóúüñ]).*[A-ZÁÉÍÓÚÜÑ]/;
+
+
+    if (regex.test(password.value)) {
+      passwordTrue = true; 
+    } else {
+      passwordTrue = false; 
+      console.log("errorPasswd");
+    }
+    
+  });
+
+  password2.addEventListener('input', function(ev) {
+    const password = ev.target;
+
+    if (password2.value == password.value) {
+      confirmacionPassword = true; 
+    } else {
+      confirmacionPassword = false; 
+      console.log("errorPasswd2");
+    }
+    
+  });
+
+  if ( emailTrue && passwordTrue && confirmacionPassword) {
+    return true;
+  }else{
+    return false;
+    console.log("todo");
+  }
+
+
+}

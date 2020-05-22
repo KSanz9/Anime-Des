@@ -14,17 +14,18 @@ body, html{
     grid-column-start: 1;
     grid-column-end: 3;
 }
-.cabecera:first-child {
+.cabecera .titulo {
     font-family: manga;
-    font-size: 20px;
-    width: 32%;
-    padding: 0% 0% 0% 5%;
-    height: 20px;
+    font-size: 22px;
+    width: 35%;
+    padding: 3% 5% 4% 5%;
+    height: 80px;
 }
 
 .cabecera h1{
     border: 4px solid black;
     border-radius: 6px;
+    margin: 5%;
 }
 
 .inicio{
@@ -47,6 +48,7 @@ body, html{
 .login input{
     border-radius: 20px;
     margin-bottom: 5px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .login #botLogin{
@@ -88,4 +90,101 @@ formulario input{
     border-radius: 2px;
     border: 1px solid cyan;
     box-shadow:inset 3px 3px 1px cyan;
+}
+
+
+/*Navigation*/
+
+navigatioBar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+navigatioBar li {
+    float: left;
+  }
+  
+navigatioBar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+navigatioBar li a:hover:not(.active) {
+    background-color: #111;
+  }
+  
+navigatioBar .active {
+    background-color: #4CAF50;
+  }
+
+
+/*Animes de temporada-Slither*/
+
+paginado{
+    display: grid;
+    grid-gap: 20px;
+    padding: 50px;
+}
+
+paginado #temporada{
+ grid-column: 1 / 2;
+ grid-row: 1;
+ width: 70% !important;
+ height: 70% !important;
+ margin-left: 0%;
+}
+#temporada #myCarousel{
+    width: 100%;
+}
+
+paginado #topAnime{
+ border: 2px solid steelblue;
+ background-color: lightskyblue;
+ grid-column: 2 / 2;
+ grid-row: 1;
+ 
+}
+paginado #topAnime h1{
+    text-align: center;
+    font-size: 200%;
+}
+
+paginado #ultimosEpisodios{
+    grid-column: 1 / 2;
+    grid-row: 2;
+}
+
+#ultimosEpisodios ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #f1f1f1;
+  }
+  
+#ultimosEpisodios  li a {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+  
+  /* Change the link color on hover */
+#ultimosEpisodios li a:hover {
+    background-color: #555;
+    color: white;
+  }
+
+
+paginado #animesEsperados{
+    border: 2px solid steelblue;
+    background-color: lightskyblue;
+    grid-column: 2 / 2;
+    grid-row: 2;
 }

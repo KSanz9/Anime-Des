@@ -1,7 +1,8 @@
 window.onload=init;
 
+
+
 function init(){
-  console.log("sjdnua<db");
     cargarEventos();    
 }
 function cargarEventos(){
@@ -13,21 +14,82 @@ function cargarEventos(){
   //cerrar el formulario para registrarse
   document.querySelector("#botCancelar").addEventListener("click", cerrarForm);
   
+  //logearse
+  document.querySelector("#botLogin").addEventListener("click", accesoUsuario);
 
 }
 
+function testEmail(mail) {
+  regex = /^\w+([\.-]?\w+)*@(?:|hotmail|outlook|yahoo|live|gmail)\.(?:|com|es)+$/;
+
+
+  if (regex.test(mail)) {
+     return true
+  } else {
+      return false
+  }
+  
+};
+function testPasswords(passwd1, passwd2){
+  let passwordValid = false;
+  regex = /^(?=.*\d)(?=.*[a-záéíóúüñ]).*[A-ZÁÉÍÓÚÜÑ]/;
+
+  if (regex.test(passwd1)) {
+    if (passwd2 == passwd1) {
+      passwordValid = true;
+    }
+  } 
+
+  return passwordValid;
+
+}
+// funcion para logearse en la pag.
+function accesoUsuario(ev){
+  ev.preventDefault();
+  const nombre = document.querySelector("input[name='loguser']").value;
+  const password = document.querySelector("input[name='logpassword']").value;
+
+
+  let user = {
+    nombre:nombre,
+    password:password
+  }
+
+  let url = "/api/usuarios/isValidUser"
+
+  fetch(url, {
+   method: 'POST',
+    body:  JSON.stringify(user),
+    headers:{
+      'Content-Type': 'application/json'
+    }
+  }).then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(response => console.log('Success:', response));
+
+}
+
+
+
+
+
+
 // Funcion para registrar el usuario 
 function registraUsuario(ev){
-  
+  ev.preventDefault();
     const nombre = document.querySelector("input[name='nombre']").value;
     const email = document.querySelector("input[name='email']").value;
     const password = document.querySelector("input[name='password']").value;
     const password2 = document.querySelector("input[name='password2']").value;
-    let userValido;
-    //validamos el Mail y la contraseña.
-    userValido = validarUsuario();
-
-    if (userValido) {
+   
+    if (!testEmail(email)) {
+      console.log("correo erroneo");
+      return;
+    }
+    if (!testPasswords(password, password2)) {
+      console.log("password erroneo");
+      return;
+    }
 
       let user = {
         nombre:nombre,
@@ -50,8 +112,7 @@ function registraUsuario(ev){
     }
 
 
-}
-   //muestra el formulario oculto para poder registrarse en la pagina.
+//muestra el formulario oculto para poder registrarse en la pagina.
 function mostrarForm(){
   document.querySelector("#registro").style.display="none";
   document.querySelector("#form").style.display="inline";
@@ -59,64 +120,10 @@ function mostrarForm(){
 }
 
 // Esta funcion lo que hace es cerrar el formulario al darle a cancelar.
-function cerrarForm() {
+function cerrarForm(ev) {
+  ev.preventDefault();
   document.querySelector("#registro").style.display="inline";
   document.querySelector("#form").style.display="none";
 }
 
 
-function validarUsuario() {
-  let emailTrue = false;
-  let passwordTrue = false; 
-  let confirmacionPassword = false;
-  
-  const email = document.querySelector("input[name='email']");
-  const password = document.querySelector("input[name='password']");
-  const password2 = document.querySelector("input[name='password2']");
-
-  email.addEventListener('input', function(ev) {
-    const mail = ev.target,
-                 regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3,4})+$/;
-
-
-    if (regex.test(mail.value)) {
-        emailTrue = true; 
-    } else {
-      emailTrue = false; 
-    }
-    
-  });
-
-
-  password.addEventListener('input', function(ev) {
-    const password = ev.target,
-                 regex = /^(?=.*\d)(?=.*[a-záéíóúüñ]).*[A-ZÁÉÍÓÚÜÑ]/;
-
-
-    if (regex.test(password.value)) {
-      passwordTrue = true; 
-    } else {
-      passwordTrue = false; 
-    }
-    
-  });
-
-  password2.addEventListener('input', function(ev) {
-    const password = ev.target;
-
-    if (password2.value == password.value) {
-      confirmacionPassword = true; 
-    } else {
-      confirmacionPassword = false; 
-    }
-    
-  });
-
-  if ( emailTrue && passwordTrue && confirmacionPassword) {
-    return true;
-  }else{
-    return false;
-  }
-
-
-}

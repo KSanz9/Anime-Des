@@ -39,3 +39,14 @@ exports.findAll = (req,res) => {
     });
 
 };
+
+
+//Comprobar si el usuario dado es valido y esta en la base de datos de la pag.
+exports.isValidUser = (req, res) => {
+    const usuario = new Usuario({
+        nombre: req.body.loguser,
+        password: req.body.logpassword
+    })
+    console.log("Entrando");
+   res.status(200).send({status:true});
+}

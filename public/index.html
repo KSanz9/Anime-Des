@@ -6,19 +6,21 @@
     <title>Anime-Des</title>
     <style>
         @import url("css/index.css");
+        
     </style>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/login.js" defer></script>
 </head>
 
 <body>
-    
     <section class="inicio">
         <header class="cabecera">
             <h1 class="titulo">ANIME-DES</h1>
         </header>
         <div class="login">
-            <form action="">
+            <form method="POST">
                 <input type="text" name="loguser" size="25" placeholder="Nick" required>
                 <input type="password" name="logpassword" size="25" placeholder="Password" required>
                 <button id="botLogin">Login</button>
@@ -30,9 +32,9 @@
 
         
             <div id="form">
-                <formulario>
+                <formulario id="formulario">
                     <h1>Registro</h1>
-                    <form id="formulario">
+                    <form method="POST">
                         <table>
                             <tr>
                                 <td> Nombre: </td>
@@ -58,10 +60,79 @@
                             <button id="botCancelar">Cancelar</button>
                             <button id="botRegistro">Registrarse</button>
                     </form>
-                    
                 </formulario>
             </div>
-        
     </section>
+
+    <navigatioBar>
+        <ul>
+            <li><a href="#home">Inicio</a></li>
+            <li><a href="#news">Noticias Anime</a></li>
+            <li><a href="#series">Series</a></li>
+            <li style="float:right"><a class="active" href="#about">Perfil</a></li>
+          </ul>
+          
+    </navigatioBar>
+    <paginado>
+        <div id="temporada" class="container">
+            <h1>Animes de temporada</h1>  
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+              <!-- Indicators -->
+              <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+              </ol>
+          
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner">
+                <div class="item active">
+                  <img src="img/Princess-Connect.png" alt="PRINCESS CONNECT! RE:DIVE" style="width:100%;">
+                  <span>PRINCESS CONNECT! RE:DIVE</span>
+                </div>
+          
+                <div class="item">
+                  <img src="img/Gleipnir.jpeg" alt="Gleipnir" style="width:100%;">
+                  <span>Gleipnir</span>
+                </div>
+              
+                <div class="item">
+                  <img src="img/Kaguya.jpg" alt="KAGUYA-SAMA WA KOKURASETAI?: TENSAI-TACHI NO RENAI ZUNOUSEN SEASON 2" style="width:100%;">
+                  <span>KAGUYA-SAMA WA KOKURASETAI?: TENSAI-TACHI NO RENAI ZUNOUSEN SEASON 2</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <section id="topAnime">
+            <h1>Top animes votados</h1>
+            <ul>
+              <li>1</li>
+              <li>2</li>
+              <li>3</li>
+            </ul>
+
+          </section>
+
+          <section id="ultimosEpisodios">
+            <h1>Ultimos episodios recientes</h1>
+            <ul>
+              <li><a href="#home">KAGUYA-SAMA WA KOKURASETAI?: TENSAI-TACHI NO RENAI ZUNOUSEN SEASON 2 Ep: 3</a></li>
+              <li><a href="#news">Gleipnir Ep: 5</a></li>
+              <li><a href="#contact">PRINCESS CONNECT! RE:DIVE Ep: 3</a></li>
+            </ul>
+          </section>
+
+          <section id="animesEsperados">
+            <h1>Animes mas esperados</h1>
+            <ul>
+              <li>1</li>
+              <li>2</li>
+              <li>3</li>
+            </ul>
+          </section>
+        </paginado>
+
 </body>
 </html>
