@@ -17,6 +17,7 @@ function cargarEventos(){
   //logearse
   document.querySelector("#botLogin").addEventListener("click", accesoUsuario);
 
+
 }
 
 function testEmail(mail) {
@@ -67,9 +68,19 @@ function accesoUsuario(ev){
   .catch(error => console.error('Error:', error))
   .then(response => console.log('Success:', response));
 
+  iniciarSesion(nombre);
 }
 
+function iniciarSesion(name){
 
+  //quitamos el login
+  document.querySelector(".login").style.display="none";  
+  document.querySelector("#botonDeRegistro").style.display="none";
+  document.getElementById("MenuDesplegable").innerHTML = name;
+
+
+ mostrarOpciones();
+}
 
 
 
@@ -126,4 +137,9 @@ function cerrarForm(ev) {
   document.querySelector("#form").style.display="none";
 }
 
-
+function mostrarOpciones(){
+  console.log("click");
+  for (let index = 0; index < 4; index++) {
+   document.getElementsByClassName("mD")[index].style.display="initial";
+  }
+}

@@ -100,7 +100,7 @@ navigatioBar ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: steelblue;
   }
   
 navigatioBar li {
@@ -114,16 +114,25 @@ navigatioBar li a {
     padding: 14px 16px;
     text-decoration: none;
   }
-  
+
+  navigatioBar ul a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
 navigatioBar li a:hover:not(.active) {
-    background-color: #111;
+    background-color: white;
   }
   
 navigatioBar .active {
     background-color: #4CAF50;
   }
-
-
+/*Menu desplegable*/
+.mD {
+    display: none;
+  }
 /*Animes de temporada-Slither*/
 
 paginado{
@@ -140,7 +149,7 @@ paginado #temporada{
  margin-left: 0%;
 }
 #temporada #myCarousel{
-    width: 100%;
+    width: 140%;
 }
 
 paginado #topAnime{
@@ -187,4 +196,10 @@ paginado #animesEsperados{
     background-color: lightskyblue;
     grid-column: 2 / 2;
     grid-row: 2;
+}
+
+footer{
+    background-color: steelblue;
+    width: 100%;
+    height: 50px;
 }

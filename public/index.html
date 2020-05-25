@@ -25,7 +25,7 @@
                 <input type="password" name="logpassword" size="25" placeholder="Password" required>
                 <button id="botLogin">Login</button>
             </form>
-            <div>
+            <div id="botonDeRegistro">
                 <button id="registro">Registrate</button>
             </div>
         </div>
@@ -66,10 +66,15 @@
 
     <navigatioBar>
         <ul>
-            <li><a href="#home">Inicio</a></li>
+            <li><a href="index.html">Inicio</a></li>
             <li><a href="#news">Noticias Anime</a></li>
             <li><a href="#series">Series</a></li>
-            <li style="float:right"><a class="active" href="#about">Perfil</a></li>
+            <ul style="float:right"><a class="active" id="MenuDesplegable" href="#about">Perfil</a>
+              <li class="mD"><a href="">Cuenta</a></li>
+              <li class="mD"><a href="">Mi lista</a></li>
+              <li class="mD"><a href="">Configuración</a></li>
+              <li class="mD"><a href="">Cerrar sesion</a></li>
+            </ul>
           </ul>
           
     </navigatioBar>
@@ -133,6 +138,8 @@
             </ul>
           </section>
         </paginado>
-
+  <footer>
+    <h1>Esto es un footer</h1>
+  </footer>
 </body>
 </html>
