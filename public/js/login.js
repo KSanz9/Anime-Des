@@ -31,13 +31,12 @@ function cargarApiAnime(){
     return respuesta.json();
 
   }).then(resposte => {
-    jsonAnimes = resposte;
-    cargarAnimes(jsonAnimes.data);
+    cargarAnimes(resposte.data);
   })
 
 
   //para los Top anime
-  const urlApiAnimeTop = "https://kitsu.io/api/edge/trending/anime"; 
+  const urlApiAnimeTop = "https://kitsu.io/api/edge/trending/anime?limit=15"; 
   const fetchAnimesTop = fetch(urlApiAnimeTop);
   
   fetchAnimesTop.then(respuesta => {
@@ -45,8 +44,9 @@ function cargarApiAnime(){
     return respuesta.json();
 
   }).then(resposte => {
-    jsonAnimesTop = resposte;
-    animesTop(jsonAnimesTop.data);
+
+    animesTop(resposte.data);
+    
   })
 }
 
@@ -54,30 +54,42 @@ function cargarAnimes(animes){
 
   cargarCarrousel(animes);
 
+  cargarEpisodios(animes);
+
 
 }
 
 function cargarCarrousel(animes){
-  console.log(animes);
-animes.forEach(element => {
-  let myCarrousel = document.querySelector(".carousel-inner");
 
-  let divLista = document.createElement("div");
-  let imgCarrousel = document.createElement("img");
+  animes.forEach(element => {
 
-  imgCarrousel.src = element.attributes.posterImage.large;
-  imgCarrousel.alt = element.attributes.canonicalTitle;
+    let myCarrousel = document.querySelector(".carousel-inner");
+
+    let divLista = document.createElement("div");
+    let imgCarrousel = document.createElement("img");
+
+    imgCarrousel.src = element.attributes.posterImage.large;
+    imgCarrousel.alt = element.attributes.canonicalTitle;
 
   
-  divLista.appendChild(imgCarrousel);
-  divLista.classList.add("item")
+    divLista.appendChild(imgCarrousel);
+    divLista.classList.add("item")
 
-  myCarrousel.appendChild(divLista);
-  myCarrousel.firstElementChild.classList.add("active");
+    myCarrousel.appendChild(divLista);
+    myCarrousel.firstElementChild.classList.add("active");
 
-});
+  });
 
 }
+
+function cargarEpisodios(animes){
+
+  animes.forEach(element => {
+    
+  });
+
+}
+
 
 function animesTop(animes){
   animes.forEach(element => {

@@ -30,7 +30,7 @@ body, html{
 
 .inicio{
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns:repeat(2, 1fr);
     grid-gap: 5px;
     background-image: url("../img/img_cabezera.png");
     background-repeat: no-repeat;
@@ -178,15 +178,16 @@ paginado #topAnime h1{
 #topAnime ul, #topAnime li{
 list-style: none;
 }
+
 #animesTop li img{
-    width: 20%;
-    height: 90px;
+    width: 60%;
+    height: 200px;
 }
-#animesTop li div{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-content: stretch;
+
+#animesTop{
+    display: grid;
+    grid-template-columns: repeat(3,0.5fr);
+    grid-gap: 1%;
 }
 
 
