@@ -47,6 +47,13 @@ exports.isValidUser = (req, res) => {
         nombre: req.body.loguser,
         password: req.body.logpassword
     })
-    console.log("Entrando");
-   res.status(200).send({status:true});
+    Usuario.find().then(usuarios=>{
+        res.status(200).send({status:true});
+    }).catch(err=>{
+        res.status(500).send({
+            message: err.message || " Algo fue mal mientras los capturabamos a todos"
+        });
+    });
+
+    /*TODO*/
 }

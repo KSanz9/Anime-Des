@@ -3,7 +3,8 @@ window.onload=init;
 
 
 function init(){
-    cargarEventos();    
+    cargarEventos(); 
+    cargarApiAnime();   
 }
 function cargarEventos(){
   //Mostrar el formulario para registrarse
@@ -20,9 +21,89 @@ function cargarEventos(){
 
 }
 
+function cargarApiAnime(){
+  const urlApiAnime = "https://kitsu.io/api/edge/anime?filter[seasonYear]=2020&filter[subtype]=TV&page[limit]=20&page[offset]=10&filter[streamers]=Crunchyroll"; 
+  //para animes
+  const fetchAnimes = fetch(urlApiAnime);
+  
+  fetchAnimes.then(respuesta => {
+
+    return respuesta.json();
+
+  }).then(resposte => {
+    jsonAnimes = resposte;
+    cargarAnimes(jsonAnimes.data);
+  })
+
+
+  //para los Top anime
+  const urlApiAnimeTop = "https://kitsu.io/api/edge/trending/anime"; 
+  const fetchAnimesTop = fetch(urlApiAnimeTop);
+  
+  fetchAnimesTop.then(respuesta => {
+
+    return respuesta.json();
+
+  }).then(resposte => {
+    jsonAnimesTop = resposte;
+    animesTop(jsonAnimesTop.data);
+  })
+}
+
+function cargarAnimes(animes){
+
+  cargarCarrousel(animes);
+
+
+}
+
+function cargarCarrousel(animes){
+  console.log(animes);
+animes.forEach(element => {
+  let myCarrousel = document.querySelector(".carousel-inner");
+
+  let divLista = document.createElement("div");
+  let imgCarrousel = document.createElement("img");
+
+  imgCarrousel.src = element.attributes.posterImage.large;
+  imgCarrousel.alt = element.attributes.canonicalTitle;
+
+  
+  divLista.appendChild(imgCarrousel);
+  divLista.classList.add("item")
+
+  myCarrousel.appendChild(divLista);
+  myCarrousel.firstElementChild.classList.add("active");
+
+});
+
+}
+
+function animesTop(animes){
+  animes.forEach(element => {
+    let lista = document.querySelector("#animesTop");
+   // console.log(element);
+    let numLista = document.createElement("li");
+    let divLista = document.createElement("div");
+    let imgAnime = document.createElement("img");
+    let nombreAnime = document.createElement("p")
+
+    nombreAnime.innerHTML = element.attributes.canonicalTitle;
+    imgAnime.src = element.attributes.posterImage.small;
+
+    divLista.appendChild(imgAnime);
+    divLista.appendChild(nombreAnime);
+
+    numLista.appendChild(divLista);
+    
+    lista.appendChild(numLista);
+  });
+ 
+}
+
+
 function testEmail(mail) {
   regex = /^\w+([\.-]?\w+)*@(?:|hotmail|outlook|yahoo|live|gmail)\.(?:|com|es)+$/;
-
 
   if (regex.test(mail)) {
      return true
@@ -46,6 +127,7 @@ function testPasswords(passwd1, passwd2){
 }
 // funcion para logearse en la pag.
 function accesoUsuario(ev){
+  
   ev.preventDefault();
   const nombre = document.querySelector("input[name='loguser']").value;
   const password = document.querySelector("input[name='logpassword']").value;
@@ -66,9 +148,15 @@ function accesoUsuario(ev){
     }
   }).then(res => res.json())
   .catch(error => console.error('Error:', error))
-  .then(response => console.log('Success:', response));
+  .then(response =>{
+    console.log('Success:', response);
 
-  iniciarSesion(nombre);
+    iniciarSesion(nombre);
+  } 
+  
+  );
+  
+  
 }
 
 function iniciarSesion(name){
@@ -125,7 +213,6 @@ function registraUsuario(ev){
 
 //muestra el formulario oculto para poder registrarse en la pagina.
 function mostrarForm(){
-  document.querySelector("#registro").style.display="none";
   document.querySelector("#form").style.display="inline";
 
 }

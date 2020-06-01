@@ -12,12 +12,12 @@ body, html{
 }
 .cabecera{
     grid-column-start: 1;
-    grid-column-end: 3;
+    grid-column-end: 2;
 }
 .cabecera .titulo {
     font-family: manga;
     font-size: 22px;
-    width: 35%;
+    width: 45%;
     padding: 3% 5% 4% 5%;
     height: 80px;
 }
@@ -55,13 +55,14 @@ body, html{
     font-family: manga;
     border-radius: 9px;
     box-shadow: 2px 2px 10px rgb(36, 34, 34) inset;
+    height: 40px;
 }
 #registro{
     margin-top: 0px;
     border-radius: 9px;
     font-family: manga;
     height: 40px;
-    width: 40%;
+    width: 100%;
     box-shadow: 2px 2px 10px rgb(36, 34, 34) inset;
   
 }
@@ -70,26 +71,29 @@ body, html{
 #form{
     display: none;
     position: relative;
-    left: 165%;
+    right: 20%;
 }
 
-formulario{
+#formulario{
     width: 10%;
     margin-left: auto;
     margin-right: auto;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-formulario h1{
+#formulario h1{
     text-align: center;
 }
 
-formulario table {
+#formulario table {
     margin: auto;
 }
-formulario input{
+#formulario input{
     border-radius: 2px;
     border: 1px solid cyan;
     box-shadow:inset 3px 3px 1px cyan;
+}
+#formulario button{
+    border-radius: 5px;
 }
 
 
@@ -134,6 +138,14 @@ navigatioBar .active {
     display: none;
   }
 /*Animes de temporada-Slither*/
+paginado span{
+    width: 100%;
+    
+}
+.carousel-inner img{
+   width: 100%;
+}
+
 
 paginado{
     display: grid;
@@ -163,6 +175,20 @@ paginado #topAnime h1{
     text-align: center;
     font-size: 200%;
 }
+#topAnime ul, #topAnime li{
+list-style: none;
+}
+#animesTop li img{
+    width: 20%;
+    height: 90px;
+}
+#animesTop li div{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: stretch;
+}
+
 
 paginado #ultimosEpisodios{
     grid-column: 1 / 2;
