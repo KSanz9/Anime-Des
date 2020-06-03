@@ -1,3 +1,4 @@
+
 window.onload=init;
 
 
@@ -23,6 +24,8 @@ function cargarEventos(){
 
 function cargarApiAnime(){
   const urlApiAnime = "https://kitsu.io/api/edge/anime?filter[seasonYear]=2020&filter[subtype]=TV&page[limit]=20&page[offset]=10&filter[streamers]=Crunchyroll"; 
+  const urlApiAnimeAñadido = "https://kitsu.io/api/edge/anime?filter[seasonYear]=2020&filter[subtype]=TV&page[limit]=6&page[offset]=10&filter[streamers]=Crunchyroll"; 
+
   //para animes
   const fetchAnimes = fetch(urlApiAnime);
   
@@ -34,7 +37,16 @@ function cargarApiAnime(){
     cargarAnimes(resposte.data);
   })
 
+//para animes
+const fetchAnimesAñadios = fetch(urlApiAnimeAñadido);
+  
+fetchAnimesAñadios.then(respuesta => {
 
+  return respuesta.json();
+
+}).then(resposte => {
+  cargarUltimosAnimes(resposte.data);
+})
   //para los Top anime
   const urlApiAnimeTop = "https://kitsu.io/api/edge/trending/anime?limit=15"; 
   const fetchAnimesTop = fetch(urlApiAnimeTop);
@@ -53,9 +65,10 @@ function cargarApiAnime(){
 function cargarAnimes(animes){
 
   cargarCarrousel(animes);
-
+ 
   cargarEpisodios(animes);
 
+  
 
 }
 
@@ -82,14 +95,55 @@ function cargarCarrousel(animes){
 
 }
 
+function cargarUltimosAnimes(animes){
+  animes.forEach(element => {
+    let lista = document.querySelector("#aniAñadidos");
+   // console.log(element);
+    let numLista = document.createElement("li");
+    let divLista = document.createElement("div");
+    let imgAnime = document.createElement("img");
+    let nombreAnime = document.createElement("p")
+
+    nombreAnime.innerHTML = element.attributes.canonicalTitle;
+    imgAnime.src = element.attributes.posterImage.small;
+
+    divLista.appendChild(imgAnime);
+    divLista.appendChild(nombreAnime);
+
+    numLista.appendChild(divLista);
+    
+    lista.appendChild(numLista);
+  });
+}
+
+
 function cargarEpisodios(animes){
 
   animes.forEach(element => {
-    
+    ponerUltimoEpisodio(element.attributes.canonicalTitle,element.relationships.episodes.links.related);
   });
 
 }
 
+function ponerUltimoEpisodio(nombreAnime,episodes){
+  
+  fetch(episodes).then(resultados =>{
+    return resultados.json();
+  }).then( episodios => {
+    let ep = document.querySelector("#episodios");
+    let lista = document.createElement("li");
+    let link = document.createElement("a");
+    
+    link.innerHTML= nombreAnime+" "+ episodios.data.length;
+    link.href="#home";
+    lista.appendChild(link);
+    ep.appendChild(lista);
+
+
+
+  })
+
+}
 
 function animesTop(animes){
   animes.forEach(element => {

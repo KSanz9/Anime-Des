@@ -1,0 +1,145 @@
+@font-face {
+    font-family: manga;
+    src: url('../fonts/manga.ttf');
+}
+@font-face {
+    font-family: odaiba;
+    src: url('../fonts/odaiba-script.zip');
+}
+body, html{
+    padding: 0;
+    margin: 0;
+}
+.cabecera{
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+.cabecera .titulo {
+    font-family: manga;
+    font-size: 22px;
+    width: 45%;
+    padding: 3% 5% 4% 5%;
+    height: 80px;
+}
+
+.cabecera h1{
+    border: 4px solid black;
+    border-radius: 6px;
+    margin: 5%;
+}
+
+.inicio{
+    display: grid;
+    grid-template-columns:repeat(2, 1fr);
+    grid-gap: 5px;
+    background-image: url("../img/img_cabezera.png");
+    background-repeat: no-repeat;
+    background-size: 100% 600px;
+    background-position: center;
+}
+.inicio > div{
+    text-align: center;
+    padding: 20px 0;
+}
+.login{   
+    margin-top: 0px;
+    font-family: manga;
+}
+.login input{
+    border-radius: 20px;
+    margin-bottom: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.login #botLogin{
+    font-family: manga;
+    border-radius: 9px;
+    box-shadow: 2px 2px 10px rgb(36, 34, 34) inset;
+    height: 40px;
+}
+#registro{
+    margin-top: 0px;
+    border-radius: 9px;
+    font-family: manga;
+    height: 40px;
+    width: 100%;
+    box-shadow: 2px 2px 10px rgb(36, 34, 34) inset;
+  
+}
+
+/*Formulario de registro*/
+#form{
+    display: none;
+    position: relative;
+    right: 20%;
+}
+
+#formulario{
+    width: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+#formulario h1{
+    text-align: center;
+}
+
+#formulario table {
+    margin: auto;
+}
+#formulario input{
+    border-radius: 2px;
+    border: 1px solid cyan;
+    box-shadow:inset 3px 3px 1px cyan;
+}
+#formulario button{
+    border-radius: 5px;
+}
+
+
+/*Navigation*/
+
+navigatioBar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: steelblue;
+  }
+  
+navigatioBar li {
+    float: left;
+  }
+  
+navigatioBar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  navigatioBar ul a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+navigatioBar li a:hover:not(.active) {
+    background-color: white;
+  }
+  
+navigatioBar .active {
+    background-color: #4CAF50;
+  }
+/*Menu desplegable*/
+.mD {
+    display: none;
+  }
+  footer{
+    text-align: center;
+    background-color: steelblue;
+    width: 100%;
+    height: 100%;
+}
