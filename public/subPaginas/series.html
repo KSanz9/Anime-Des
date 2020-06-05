@@ -6,8 +6,11 @@
     <title>Anime-Des</title>
     <style>
         @import url("../css/firstPage.css");
+        @import url("../css/series.css");
+        
     </style>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="../js/series.js" defer></script>
 </head>
 <body>
     <section class="inicio">
@@ -76,10 +79,44 @@
           
     </navigatioBar>
 
+    <pagina>
+        
+        <section id="filtro">
+            <select name="gener" id="genero">
+                <option value="0">Genero</option>
+            </select>
+
+            <select name="year" id="year">
+                <option value="0">Año</option>
+            </select>
+
+            <select name="tempo" id="temporada">
+                <option value="0">Temporada</option>
+            </select>
+        </section>
+
+        <section id="series">
+            <div id="animes">
+
+
+            </div>
+            <div id="prev-next">
+                <button id="prev">Anterior</button>
+                <p id="numeroLista">1</p>
+                <button id="next">Siguiente</button>
+            </div>        
+        </section>
+
+
+
+
+    </pagina>
+
+
     <footer>
         <h1>Todos los derechos reservados ©</h1>
-        <p> Trabajamos junto con <img src="img/crun.png" alt="Crunchyroll" style="width: 35px;height: 30px;">
-         <img src="img/net.png" alt="Netflix" style="width: 35px;height: 30px;"></p>
+        <p> Trabajamos junto con <img src="../img/crun.png" alt="Crunchyroll" style="width: 35px;height: 30px;">
+         <img src="../img/net.png" alt="Netflix" style="width: 35px;height: 30px;"></p>
     
       </footer>
 </body>
