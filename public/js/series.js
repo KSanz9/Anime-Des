@@ -1,9 +1,12 @@
-window.onload=init;
+window.addEventListener("load", init, false);
+
 let numeroAnime = 4835;
 let numeroLista = 1;
+
 function init(){
   cargarApiAnime(numeroAnime);
   document.getElementById("next").addEventListener("click", cambiarAnimesNext);  
+  document.getElementById("prev").addEventListener("click", cambiarAnimesPrev);  
 }
 
 
@@ -43,11 +46,19 @@ function seriesAnime(animes){
 }
 
 function cambiarAnimesNext(ev){
-
   document.querySelector("#animes").innerHTML="";
   numeroAnime -= 15;
   numeroLista += 1
   document.querySelector("#numeroLista").innerHTML = numeroLista;
-  cargarApiAnime(numeroAnime-15);
+  cargarApiAnime(numeroAnime);
+
+}
+function cambiarAnimesPrev(ev){
+
+  document.querySelector("#animes").innerHTML="";
+  numeroAnime += 15;
+  numeroLista -= 1
+  document.querySelector("#numeroLista").innerHTML = numeroLista;
+  cargarApiAnime(numeroAnime);
 
 }
