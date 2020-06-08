@@ -44,11 +44,23 @@ exports.findAll = (req,res) => {
 //Comprobar si el usuario dado es valido y esta en la base de datos de la pag.
 exports.isValidUser = (req, res) => {
     const usuario = new Usuario({
-        nombre: req.body.loguser,
-        password: req.body.logpassword
+        nombre: req.body.nombre,
+        password: req.body.password
     })
-    Usuario.find().then(usuarios=>{
-        res.status(200).send({status:true});
+
+    Usuario.find({nombre: usuario.nombre}).then(usuarioAux=>{
+        /*TODO Quitar password del usuario*/ 
+        console.log(usuarioAux);
+        res.status(200).send(
+            
+            {status:true, 
+                usuario:usuarioAux[0]}
+            
+            
+            );
+
+
+
     }).catch(err=>{
         res.status(500).send({
             message: err.message || " Algo fue mal mientras los capturabamos a todos"

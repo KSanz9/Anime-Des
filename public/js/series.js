@@ -33,12 +33,19 @@ function seriesAnime(animes){
     let divAnime = document.createElement("div");
     let divPrincipal = document.querySelector("#animes");
 
+    let linkAnime = document.createElement("a");
     nombreAnime.innerHTML = element.attributes.canonicalTitle;     
     imgAnime.src = element.attributes.posterImage.small;
     imgAnime.alt = element.attributes.canonicalTitle;
+    linkAnime.href = "./detalles.html?"+element.id;
+    linkAnime.innerHTML = "Link";
+
+
     divAnime.appendChild(imgAnime);
     divAnime.appendChild(nombreAnime);
+    divAnime.appendChild(linkAnime);
     divPrincipal.appendChild(divAnime);
+
 
   });
   

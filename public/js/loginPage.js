@@ -1,26 +1,59 @@
 window.addEventListener("load", init, false);
 
-
+let cookieUsuario = false;
+let UserLoged;
 function init(){
     cargarEventos(); 
 }
 
 function cargarEventos(){
-    console.log("ey");
 
-  //Mostrar el formulario para registrarse
-  document.querySelector("#registro").addEventListener("click", mostrarForm);
-  
-  // Boton de registrar
-  document.querySelector("#botRegistro").addEventListener("click",registraUsuario);
-  //cerrar el formulario para registrarse
-  document.querySelector("#botCancelar").addEventListener("click", cerrarForm);
-  
-  //logearse
-  document.querySelector("#botLogin").addEventListener("click", accesoUsuario);
+    cookieUsuario = isCookieTrue();
 
+    if (!cookieUsuario) {
+      //Mostrar el formulario para registrarse
+      document.querySelector("#registro").addEventListener("click", mostrarForm);
+  
+       // Boton de registrar
+      document.querySelector("#botRegistro").addEventListener("click",registraUsuario);
+       //cerrar el formulario para registrarse
+       document.querySelector("#botCancelar").addEventListener("click", cerrarForm);
+  
+      //logearse
+      document.querySelector("#botLogin").addEventListener("click", accesoUsuario);
+
+
+
+
+
+      var modal = document.getElementById('form');
+
+    // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+        if (event.target == modal) {
+        modal.style.display = "none";
+    }
 }
 
+    }else{
+      mostrarOpcionesUsuario();
+    }
+  
+}
+
+function isCookieTrue(){
+  if (document.cookie == "") {
+    return false;
+  }
+  let user = JSON.parse(document.cookie.split("=")[1]);
+
+  if(user !== undefined){
+    return true;
+  }else{
+    return false;
+  }
+
+}
 
 
 
@@ -61,7 +94,7 @@ function accesoUsuario(ev){
   }
 
   let url = "/api/usuarios/isValidUser"
-
+  console.log("hago post");
   fetch(url, {
    method: 'POST',
     body:  JSON.stringify(user),
@@ -71,9 +104,9 @@ function accesoUsuario(ev){
   }).then(res => res.json())
   .catch(error => console.error('Error:', error))
   .then(response =>{
-    console.log('Success:', response);
-
-    iniciarSesion(nombre);
+    console.log('Success:', response.usuario.nombre);
+    UserLoged =response.usuario;
+    iniciarSesion(response.usuario);
   } 
   
   );
@@ -81,15 +114,10 @@ function accesoUsuario(ev){
   
 }
 
-function iniciarSesion(name){
+function iniciarSesion(usuario){
+  document.cookie = "userLogged="+JSON.stringify(usuario)+";max-age=60*60*24*365"; 
 
-  //quitamos el login
-  document.querySelector(".login").style.display="none";  
-  document.querySelector("#botonDeRegistro").style.display="none";
-  document.getElementById("MenuDesplegable").innerHTML = name;
-
-
- mostrarOpciones();
+  mostrarOpcionesUsuario();
 }
 
 
@@ -129,9 +157,13 @@ function registraUsuario(ev){
         }
       }).then(res => res.json())
       .catch(error => console.error('Error:', error))
-      .then(response => console.log('Success:', response));
+      .then(response => {
+        alert("Se ha registrado correctamente");
+        init();
+      });
     }
 
+    
 
 //muestra el formulario oculto para poder registrarse en la pagina.
 function mostrarForm(){
@@ -146,9 +178,30 @@ function cerrarForm(ev) {
   document.querySelector("#form").style.display="none";
 }
 
-function mostrarOpciones(){
-  console.log("click");
-  for (let index = 0; index < 4; index++) {
-   document.getElementsByClassName("mD")[index].style.display="initial";
-  }
+function mostrarOpcionesUsuario(){
+ //quitamos el login
+ let usuario = JSON.parse(document.cookie.split("=")[1]);
+
+ document.querySelector(".login").style.display="none";  
+ document.querySelector("#botonDeRegistro").style.display="none";
+ document.getElementById("menuDesplegable").style.display="inline";
+ document.getElementById("perfil").innerHTML = usuario.nombre;
+
+  eventosBotonesUsusario();
 }
+
+function eventosBotonesUsusario() {
+  
+ document.querySelector("#logout").addEventListener("click", cerrarSesionUsuario);
+
+
+ 
+}
+
+function cerrarSesionUsuario(ev) {
+  document.cookie = "userLogged="+UserLoged+";max-age=-1";
+  location.reload();
+
+}
+
+

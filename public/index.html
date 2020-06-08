@@ -23,54 +23,49 @@
     <section class="inicio">
         <header class="cabecera">
             <h1 class="titulo">ANIME-DES</h1>
-
-            <div id="form">
-              <formulario id="formulario">
-                  <form method="POST">
-                      <table>
-                          <tr>
-                              <td> Nombre: </td>
-                              <td> <input type="text"  name="nombre"  required></td>
-                          </tr>
              
-                          <tr>
-                          <td> e-mail: </td>
-                          <td><input type="text" name="email"  required></td>
-                          </tr>
-                          <tr>
-                              <td> Password: </td>
-                              <td><input type="password" name="password"  required>
-                              </td>
-             
-                          </tr>
-                          <tr>
-                              <td> Repetir password: </td>
-                              <td><input type="password"  name="password2"  required>
-                              </td>
-                          </tr>
-                          <tr>
-                            <td><button id="botCancelar">Cancelar</button>  <button id="botRegistro">Registrarse</button></td>
+              <div id="form" class="modal">
+              <formulario  id="formulario">
+                <form class="modal-content animate"  method="POST">              
+                  <div class="container">
+                    <label><b>Nombre:</b></label>
+                    <input type="text"  name="nombre"  required>
 
-                            
-                         
-                          </tr>
-                      </table>
-                          
-                  </form>
+                    <label><b>e-mail:</b></label>
+                    <input type="text" name="email"  required>
+              
+                    <label><b> Password:</b></label>
+                    <input type="password" name="password"  required>
+                    
+                    <label><b>Repetir Password:</b></label>
+                    <input type="password" name="password2"  required>
+
+                    <button id="botRegistro">Registrarse</button>
+                  </div>
+              
+                  <div class="container" style="background-color:#f1f1f1">
+                   <button id="botCancelar">Cancelar</button>
+                    <span class="psw">Forgot <a href="#">password?</a></span>
+                  </div>
+                </form>
               </formulario>
+              </div>
+
+
           </div>
         </header>   
     </section>
     <navigatioBar>
         <ul>
             <li><a href="index.html">Inicio</a></li>
-            <li><a href="subPaginas/series.html">Series</a></li>
-            <ul style="float:right"><a class="active" id="MenuDesplegable" href="#about">Perfil</a>
-              <li class="mD"><a href="">Cuenta</a></li>
-              <li class="mD"><a href="">Mi lista</a></li>
-              <li class="mD"><a href="">Configuración</a></li>
-              <li class="mD"><a href="">Cerrar sesion</a></li>
-            </ul>
+            <li><a href="animesDesPage/series.html">Series</a></li>
+            <ul style="float:right">
+              <div id="menuDesplegable">
+                <ul>
+                  <li> <a id="perfil" href="#">Perfil</a></li>
+                  <li> <a id="logout" href="#">Cerrar sesion</a></li> 
+                </ul>
+              </div>
             <li style="float:right"><div id="botonDeRegistro">
               <button id="registro">Registrate</button>
           </div></li>
@@ -82,8 +77,9 @@
                   <button id="botLogin">Login</button>
               </form>
             </div></li>
-          </ul>
-          
+          </ul> 
+
+        </ul>
     </navigatioBar>
     <paginado>
         <div id="temporada" class="container">
