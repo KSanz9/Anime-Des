@@ -34,7 +34,7 @@ exports.findAll = (req,res) => {
         res.send(usuarios);
     }).catch(err=>{
         res.status(500).send({
-            message: err.message || " Algo fue mal mientras los capturabamos a todos"
+            message: err.message || " Algo fue mal"
         });
     });
 
@@ -43,29 +43,35 @@ exports.findAll = (req,res) => {
 
 //Comprobar si el usuario dado es valido y esta en la base de datos de la pag.
 exports.isValidUser = (req, res) => {
-    const usuario = new Usuario({
-        nombre: req.body.nombre,
-        password: req.body.password
-    })
+    const usuario = new Usuario({nombre: req.body.nombre,password: req.body.password})
 
     Usuario.find({nombre: usuario.nombre}).then(usuarioAux=>{
-        /*TODO Quitar password del usuario*/ 
-        console.log(usuarioAux);
-        res.status(200).send(
-            
-            {status:true, 
-                usuario:usuarioAux[0]}
-            
-            
-            );
+        
+        res.status(200).send({status:true, usuario:usuarioAux[0]});
 
-
-
-    }).catch(err=>{
+   }).catch(err=>{
         res.status(500).send({
-            message: err.message || " Algo fue mal mientras los capturabamos a todos"
+            message: err.message || " Algo fue mal"
         });
     });
 
     /*TODO*/
+}
+
+exports.updateAnimeList = (req, res) => {
+  const usuario = req.body.usuario;
+  const anime = req.body.anime;
+    console.log("voy a añadir a fav");
+Usuario.findOne({nombre: usuario}).then(usuarioAux=>{
+    if (!usuarioAux.animesVistos.filter(animeUse => animeUse === anime ).length) {
+        usuarioAux.animesVistos.push(anime);
+        usuarioAux.save();
+        res.status(200).send({status:true});    
+    }
+   
+}).catch(err=>{
+    res.status(500).send({
+        message: err.message || " Algo fue mal"
+    });
+});
 }

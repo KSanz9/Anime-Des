@@ -29,6 +29,7 @@ paginado h1{
 }
 #temporada #myCarousel{
     width: 140%;
+    box-shadow: 2px 2px 10px rgb(0, 0, 0);
 }
 
 paginado #topAnime{
@@ -38,21 +39,46 @@ paginado #topAnime{
  grid-row: 1;
  
 }
-
-#topAnime li, #aniAñadidos{
-list-style: none;
+#lista div, #aniAñadidos div{
+    width: 100%;
+    text-align: center;
 }
 
-#animesTop img, #aniAñadidos img{
+#lista img{
     width: 60%;
     height: 160px;
+    margin: 5% 5% 5% 5%;
 }
 
-#animesTop, #aniAñadidos{
+#aniAñadidos img{
+    width: 60%;
+    height: 160px;
+    margin: 5% 5% 5% 5%;
+}
+
+#lista, #aniAñadidos{
     display: grid;
     grid-template-columns: repeat(3,0.5fr);
     grid-gap: 1%;
 }
+#topAnime a, #aniAñadidos a{
+    text-decoration:none;
+    background-color: white;
+    color: black;
+    margin: 5% 5% 5% 5%;
+    border: 2px solid black;
+    border-radius: 5%;
+}
+
+#topAnime a:hover, #aniAñadidos a:hover{
+    text-decoration:none;
+    background-color: white;
+    color: black;
+    margin: 5% 5% 5% 5%;
+    box-shadow: 2px 2px 10px rgb(0, 0, 0);
+    border-radius: 5%;
+}
+
 
 
 paginado #ultimosEpisodios{
@@ -79,6 +105,8 @@ paginado #ultimosEpisodios{
 #ultimosEpisodios li a:hover {
     background-color: #555;
     color: white;
+    box-shadow: 2px 2px 10px rgb(0, 0, 0);
+    
   }
 
 

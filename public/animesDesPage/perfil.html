@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime-Des</title>
+    <style>
+        @import url("../css/firstPage.css");
+        @import url("../css/perfil.css");
+
+    </style>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src=""></script>
+
+
+</head>
+
+<body>
+    <section class="inicio">
+        <header class="cabecera">
+            <h1 class="titulo">ANIME-DES</h1>
+
+            <div id="form" class="modal">
+              <formulario  id="formulario">
+                <form class="modal-content animate"  method="POST">              
+                  <div class="container">
+                    <label><b>Nombre:</b></label>
+                    <input type="text"  name="nombre"  required>
+
+                    <label><b>e-mail:</b></label>
+                    <input type="text" name="email"  required>
+              
+                    <label><b> Password:</b></label>
+                    <input type="password" name="password"  required>
+                    
+                    <label><b>Repetir Password:</b></label>
+                    <input type="password" name="password2"  required>
+
+                    <button id="botRegistro">Registrarse</button>
+                  </div>
+              
+                  <div class="container" style="background-color:#f1f1f1">
+                   <button id="botCancelar">Cancelar</button>
+                    <span class="psw">Forgot <a href="#">password?</a></span>
+                  </div>
+                </form>
+              </formulario>
+              </div>
+        </header>   
+    </section>
+    <navigatioBar>
+      <ul>
+        <li><a href="../index.html">Inicio</a></li>
+        <li><a href="series.html">Series</a></li>
+    </ul>
+</navigatioBar>
+
+    <div id="perfil">
+     
+    </div>
+
+
+  
+  <footer>
+    <h1>Todos los derechos reservados ©</h1>
+    <p> Trabajamos junto con <img src="../img/crun.png" alt="Crunchyroll" style="width: 35px;height: 30px;">
+     <img src="../img/net.png" alt="Netflix" style="width: 35px;height: 30px;"></p>
+
+  </footer>
+</body>
+</html>

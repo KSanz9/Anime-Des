@@ -15,7 +15,6 @@ function cargarApiAnime(numero){
     const fetchAnimes = fetch(urlApiAnime);
     
     fetchAnimes.then(respuesta => {
-  
       return respuesta.json();
   
     }).then(resposte => {
@@ -38,13 +37,12 @@ function seriesAnime(animes){
     imgAnime.src = element.attributes.posterImage.small;
     imgAnime.alt = element.attributes.canonicalTitle;
     linkAnime.href = "./detalles.html?"+element.id;
-    linkAnime.innerHTML = "Link";
 
 
     divAnime.appendChild(imgAnime);
     divAnime.appendChild(nombreAnime);
-    divAnime.appendChild(linkAnime);
-    divPrincipal.appendChild(divAnime);
+    linkAnime.appendChild(divAnime);
+    divPrincipal.appendChild(linkAnime);
 
 
   });

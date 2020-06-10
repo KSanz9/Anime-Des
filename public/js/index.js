@@ -82,20 +82,22 @@ function cargarUltimosAnimes(animes){
   animes.forEach(element => {
     let lista = document.querySelector("#aniAñadidos");
    // console.log(element);
-    let numLista = document.createElement("li");
     let divLista = document.createElement("div");
     let imgAnime = document.createElement("img");
     let nombreAnime = document.createElement("p")
-
+    let linkAnime = document.createElement("a");
+    
     nombreAnime.innerHTML = element.attributes.canonicalTitle;
     imgAnime.src = element.attributes.posterImage.small;
+
+    linkAnime.href = "animesDesPage/detalles.html?"+element.id;
 
     divLista.appendChild(imgAnime);
     divLista.appendChild(nombreAnime);
 
-    numLista.appendChild(divLista);
+    linkAnime.appendChild(divLista);
     
-    lista.appendChild(numLista);
+    lista.appendChild(linkAnime);
   });
 }
 
@@ -130,22 +132,22 @@ function ponerUltimoEpisodio(nombreAnime,episodes){
 
 function animesTop(animes){
   animes.forEach(element => {
-    let lista = document.querySelector("#animesTop");
+    let lista = document.querySelector("#lista");
    // console.log(element);
-    let numLista = document.createElement("li");
     let divLista = document.createElement("div");
     let imgAnime = document.createElement("img");
     let nombreAnime = document.createElement("p")
+    let linkAnime = document.createElement("a");
 
     nombreAnime.innerHTML = element.attributes.canonicalTitle;
     imgAnime.src = element.attributes.posterImage.small;
+    linkAnime.href = "animesDesPage/detalles.html?"+element.id;
+
 
     divLista.appendChild(imgAnime);
     divLista.appendChild(nombreAnime);
-
-    numLista.appendChild(divLista);
-    
-    lista.appendChild(numLista);
+    linkAnime.appendChild(divLista);
+    lista.appendChild(linkAnime);
   });
  
 }

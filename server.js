@@ -33,7 +33,7 @@ app.use("/", express.static(__dirname + "/public"));
 
 // Require Usuarios routes
 app.use("/api/usuarios",require("./app/routes/usuarios.routes.js"));
-
+app.use("/api/votacion",require("./app/routes/votacion.routes.js"));
 
 app.listen(port, function () {
   console.log("AnimeDes - En Marcha en el puerto : "+port);

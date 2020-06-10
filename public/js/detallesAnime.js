@@ -2,12 +2,94 @@
 window.addEventListener("load", init, false);
 
 
+let idAnime = window.location.href.split("?")[1];
+
 function init(){
-    /*recoge la id del anime para saber cual has mirado */
-    let idAnime = window.location.href.split("?")[1];
-    cargarApiAnime(idAnime);
+  /*recoge la id del anime para saber cual has mirado */
   
+  cargarApiAnime(idAnime);
+
+  //eventos
+  document.querySelector(".votarAnime").addEventListener("click", votarAnime);
+
+  document.querySelector(".favoritoAnime").addEventListener("click", anyadirListaFav);
    
+  }
+
+  
+
+  function votarAnime(ev){
+
+    ev.preventDefault();
+
+    if (document.cookie == "") {
+      alert("Debes estar registrado");
+
+    }else{
+
+      let cookie = JSON.parse(document.cookie.split("=")[1]);
+
+      const score = document.querySelector("select[name='score']").value;
+   
+      let votacion = {
+        idAnime: idAnime,
+        idUsuario: cookie.nombre,
+        nota:score
+      }
+
+      let url = "/api/votacion/create"
+      console.log(votacion);
+
+      fetch(url, {
+       method: 'POST',
+        body:  JSON.stringify(votacion),
+        headers:{
+          'Content-Type': 'application/json'
+        }
+      }).then(res => res.json())
+      .catch(error => console.error('Error:', error))
+      .then(response => {
+      });
+
+    }
+
+    }
+    
+
+  function anyadirListaFav(ev){
+    ev.preventDefault();
+    if (document.cookie == "") {
+      alert("Debes estar registrado");
+    }else{
+
+      let cookie = JSON.parse(document.cookie.split("=")[1]);
+      let animeName = document.getElementsByClassName("nameAnimeDetails")[0].innerHTML;
+
+      let lista = {
+        anime: animeName,
+        usuario: cookie.nombre,
+      }
+
+      let url = "/api/usuarios/updateAnimeList"
+      console.log(lista);
+
+      fetch(url, {
+       method: 'POST',
+        body:  JSON.stringify(lista),
+        headers:{
+          'Content-Type': 'application/json'
+        }
+      }).then(res => res.json())
+      .catch(error => console.error('Error:', error))
+      .then(response => {
+        alert(animeName+" ha sido añadido a favoritos");
+      });
+  
+
+    }
+
+
+
   }
 
   function cargarApiAnime(idAnime) {
@@ -25,7 +107,6 @@ function init(){
   }
 
   function infoAnimeAtributos(anime){
-    console.log(anime);
     let imgAnime = document.createElement("img");
     let nombreAnime = document.createElement("h1");
     let synopsisAnime = document.createElement("p");
