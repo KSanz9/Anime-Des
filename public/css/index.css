@@ -37,7 +37,7 @@ paginado #topAnime{
  background-color: lightskyblue;
  grid-column: 2 / 2;
  grid-row: 1;
- 
+ height: 110%;
 }
 #lista div, #aniAñadidos div{
     width: 100%;
@@ -61,7 +61,7 @@ paginado #topAnime{
     grid-template-columns: repeat(3,0.5fr);
     grid-gap: 1%;
 }
-#topAnime a, #aniAñadidos a{
+#lista a, #aniAñadidos a{
     text-decoration:none;
     background-color: white;
     color: black;
@@ -70,7 +70,7 @@ paginado #topAnime{
     border-radius: 5%;
 }
 
-#topAnime a:hover, #aniAñadidos a:hover{
+#lista a:hover, #aniAñadidos a:hover{
     text-decoration:none;
     background-color: white;
     color: black;
@@ -82,6 +82,7 @@ paginado #topAnime{
 
 
 paginado #ultimosEpisodios{
+    margin-top: 5%;
     grid-column: 1 / 2;
     grid-row: 2;
 }
@@ -111,6 +112,8 @@ paginado #ultimosEpisodios{
 
 
 paginado #animesEsperados{
+    margin-top: 15%;
+
     border: 2px solid steelblue;
     background-color: lightskyblue;
     grid-column: 2 / 2;

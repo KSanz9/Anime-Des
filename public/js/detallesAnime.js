@@ -13,8 +13,56 @@ function init(){
   document.querySelector(".votarAnime").addEventListener("click", votarAnime);
 
   document.querySelector(".favoritoAnime").addEventListener("click", anyadirListaFav);
-   
+  
+  document.getElementById("comentar").addEventListener("click", comentarAnime);
+
+
+
   }
+
+  function comentarAnime(){
+    if (document.cookie == "") {
+      alert("Debes estar registrado");
+
+    }else{
+      let text = document.getElementById("textArea");
+
+    if (text.value != "") {
+      let cookie = JSON.parse(document.cookie.split("=")[1]);
+
+      let comentario = {
+        idAnime: idAnime,
+        idUsuario: cookie.nombre,
+        comentario: text.value
+      }
+
+      let url = "/api/comentarios/create"
+      console.log(comentario);
+
+      fetch(url, {
+       method: 'POST',
+        body:  JSON.stringify(comentario),
+        headers:{
+          'Content-Type': 'application/json'
+        }
+      }).then(res => res.json())
+      .catch(error => console.error('Error:', error))
+      .then(response => {
+        
+      });
+
+
+
+
+    }else{
+      alert("Tienes que tener algo escrito");
+    }
+    }
+
+
+  }
+
+
 
   
 
@@ -26,7 +74,6 @@ function init(){
       alert("Debes estar registrado");
 
     }else{
-
       let cookie = JSON.parse(document.cookie.split("=")[1]);
 
       const score = document.querySelector("select[name='score']").value;
@@ -49,10 +96,10 @@ function init(){
       }).then(res => res.json())
       .catch(error => console.error('Error:', error))
       .then(response => {
+        
       });
 
     }
-
     }
     
 
@@ -63,7 +110,7 @@ function init(){
     }else{
 
       let cookie = JSON.parse(document.cookie.split("=")[1]);
-      let animeName = document.getElementsByClassName("nameAnimeDetails")[0].innerHTML;
+      let animeName = window.location.href.split("?")[1];
 
       let lista = {
         anime: animeName,
@@ -144,6 +191,4 @@ function init(){
     divPrincipal.appendChild(synopsisAnime);
     divPrincipal.appendChild(statusAnime);
     divPrincipal.appendChild(typeAnime);
-
-
   }

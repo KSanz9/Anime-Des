@@ -115,7 +115,7 @@ function accesoUsuario(ev){
 }
 
 function iniciarSesion(usuario){
-  document.cookie = "userLogged="+JSON.stringify(usuario)+";max-age=60*60*24*365"; 
+  document.cookie = "userLogged="+JSON.stringify(usuario)+";max-age=9592090"; 
 
   mostrarOpcionesUsuario();
 }

@@ -1,6 +1,8 @@
 html, body{
     font-family: 'Courier New', Courier, monospace;
 }
+
+
 .imgAnimeDetails{
     grid-area: img;
     margin: 1% 1% 1% 1%;
@@ -11,7 +13,6 @@ html, body{
 .nameAnimeDetails{
     grid-area: name;
     font-size: 400%;
-    text-align: center;
 }
 
 .synopsisAnimeDetails{
@@ -20,8 +21,7 @@ html, body{
     padding: 3% 3% 3% 3%;
     border-radius: 20px;
     box-shadow: 2px 2px 30px rgb(0, 0, 0) ;
-    margin-bottom: 200px;
-    width: 100%;
+    width: 80%;
 
 }
 
@@ -44,7 +44,7 @@ html, body{
     grid-area: status;
     margin-left: 10%;
     border: 1px solid black;
-    width: 3%;
+    width: 13%;
     text-align: center;
     padding-top: 1%;
     border-radius: 50%;
@@ -84,16 +84,19 @@ html, body{
     height: 70px;
     border: 2px solid black;
     border-radius: 15px;
-    box-shadow: 5px 5px 5px rgb(0, 0, 0);
+    
     font-size: 15pt;   
     background-color: white;
     margin-right: 100px;
     margin-left: 10%;
 }
-
+.votarAnime:hover{
+    box-shadow: 5px 5px 5px rgb(0, 0, 0);
+}
 #anime{
     padding: 5% 5% 5% 5%;
     display: grid;
+    width: 80%;
     grid-template-areas: 
         'img name name '
         'img synopsis synopsis'
@@ -104,6 +107,32 @@ html, body{
     
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     
+}
+
+
+#comentarios textarea{
+    width: 90%;
+    height: 100px;
+    resize: none;
+
+}
+#comentariosUsuarios{
+    width: 280%;
+    height: 500px;
+    border: 1px solid steelblue;
+    box-shadow: 5px 5px 5px steelblue;
+    margin: 5%;
+}
+#comentarios button{
+    margin: 2%;
+    border: 2px solid black;
+    border-radius: 15px;
+    width: 40%;
+    height: 5%;
+    background-color: white;
+}
+#comentarios button:hover{
+    box-shadow: 5px 5px 5px steelblue;
 
 }
 
