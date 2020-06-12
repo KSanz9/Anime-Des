@@ -41,6 +41,24 @@ exports.findAll = (req,res) => {
 };
 
 
+exports.conseguirAnime = (req, res) => {
+   
+    Usuario.find({nombre: req.body.idUsuario}).then(userAux=>{
+        console.log(userAux);
+        res.status(200).send({usuario:userAux});
+
+   }).catch(err=>{
+        res.status(500).send({
+            message: err.message || " Algo fue mal"
+        });
+    });
+
+
+}
+
+
+
+
 //Comprobar si el usuario dado es valido y esta en la base de datos de la pag.
 exports.isValidUser = (req, res) => {
     const usuario = new Usuario({nombre: req.body.nombre,password: req.body.password})

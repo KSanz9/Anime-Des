@@ -41,7 +41,7 @@ function cargarInfoPerfil(){
 
 function cargarListaAnime(){
     console.log("infoAnime");
-
+    let array
     let divPrincipal = document.getElementById("perfilUsuario");
     let animeList = document.createElement("div");
     let nombreList = document.createElement("h1");
@@ -52,40 +52,60 @@ function cargarListaAnime(){
 
 
     let User = JSON.parse(document.cookie.split("=")[1]);
-    let array = User.animesVistos;
 
-    console.log(array);
+    let user = {
+        idUsuario: User.nombre
+      }
 
-    array.forEach(element => {
-        const urlApiAnime = "https://kitsu.io/api/edge/anime?filter[id]="+element;
-        const fetchAnimes = fetch(urlApiAnime);
-        
-        fetchAnimes.then(respuesta => {
-      
-          return respuesta.json();
-      
-        }).then(result => {   
-            let anime = result.data[0];
+    let url = "/api/usuarios/conseguirAnime";
 
-            let link = document.createElement("a");
-            let animeVisto = document.createElement("div");
-            let imgAnime = document.createElement("img");
-            let nombreAnime = document.createElement("p");
+    fetch(url, {
+    
+      method: 'POST',
+      body:  JSON.stringify(user),
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    }).then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(response =>{
 
-            nombreAnime.innerHTML = anime.attributes.canonicalTitle;
-            imgAnime.src = anime.attributes.posterImage.small;
-            imgAnime.classList.add("imgList");
-            link.href =  "./detalles.html?"+anime.id;
+        array = response.usuario[0].animesVistos;
+
+        array.forEach(element => {
+            const urlApiAnime = "https://kitsu.io/api/edge/anime?filter[id]="+element;
+            const fetchAnimes = fetch(urlApiAnime);
             
-            animeVisto.appendChild(nombreAnime);
-            animeVisto.appendChild(imgAnime);
-            link.appendChild(animeVisto);
-            animeList.appendChild(link);
-            
+            fetchAnimes.then(respuesta => {
+          
+              return respuesta.json();
+          
+            }).then(result => {   
+                let anime = result.data[0];
+    
+                let link = document.createElement("a");
+                let animeVisto = document.createElement("div");
+                let imgAnime = document.createElement("img");
+                let nombreAnime = document.createElement("p");
+    
+                nombreAnime.innerHTML = anime.attributes.canonicalTitle;
+                imgAnime.src = anime.attributes.posterImage.small;
+                imgAnime.classList.add("imgList");
+                link.href =  "./detalles.html?"+anime.id;
+                
+                animeVisto.appendChild(nombreAnime);
+                animeVisto.appendChild(imgAnime);
+                link.appendChild(animeVisto);
+                animeList.appendChild(link);
+                
+    
+            })
+        });
+        divPrincipal.appendChild(animeList);
+    });
 
-        })
-    });   
+      
 
 
-    divPrincipal.appendChild(animeList);
+    
 }

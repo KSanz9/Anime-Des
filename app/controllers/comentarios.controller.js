@@ -25,3 +25,22 @@ exports.create = (req,res)=>{
         });
     });
 };
+
+
+exports.comentAnime = (req, res) => {
+
+    const comentario = new Comentario({
+        idAnime: req.body.codigoAnime
+    })
+        Comentario.find({idAnime: comentario.idAnime}).then(animeAux=>{
+        
+        res.status(200).send({anime:animeAux});
+
+   }).catch(err=>{
+        res.status(500).send({
+            message: err.message || " Algo fue mal"
+        });
+    });
+
+
+}

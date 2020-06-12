@@ -159,7 +159,7 @@ function registraUsuario(ev){
       .catch(error => console.error('Error:', error))
       .then(response => {
         alert("Se ha registrado correctamente");
-        init();
+        location.href ="../index.html";
       });
     }
 
@@ -200,7 +200,7 @@ function eventosBotonesUsusario() {
 
 function cerrarSesionUsuario(ev) {
   document.cookie = "userLogged="+UserLoged+";max-age=-1";
-  location.reload();
+  location.href="../index.html";
 
 }
 

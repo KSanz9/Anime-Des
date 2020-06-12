@@ -117,6 +117,7 @@ html, body{
 
 }
 #comentariosUsuarios{
+    overflow: scroll;
     width: 280%;
     height: 500px;
     border: 1px solid steelblue;
@@ -136,3 +137,13 @@ html, body{
 
 }
 
+#comentariosUsuarios div{
+    margin: 1%;
+    border: 1px solid black;
+    box-shadow: 5px 5px 5px rgb(0, 0, 0) inset;
+}
+
+
+#comentariosUsuarios h3, #comentariosUsuarios p{
+    margin: 1%;
+}

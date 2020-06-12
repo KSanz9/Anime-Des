@@ -8,13 +8,62 @@ function init(){
   /*recoge la id del anime para saber cual has mirado */
   
   cargarApiAnime(idAnime);
-
+  cargarComentarios();
   //eventos
   document.querySelector(".votarAnime").addEventListener("click", votarAnime);
 
   document.querySelector(".favoritoAnime").addEventListener("click", anyadirListaFav);
   
   document.getElementById("comentar").addEventListener("click", comentarAnime);
+
+
+
+  }
+
+  function cargarComentarios(){
+
+    let animeId = {
+      codigoAnime: idAnime
+    }
+    console.log(animeId);
+    let url = "/api/comentarios/comentAnime";
+    console.log("hago post");
+
+    fetch(url, {
+    
+      method: 'POST',
+      body:  JSON.stringify(animeId),
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    }).then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(response =>{
+      console.log(response.anime)
+      let divPrincipal = document.querySelector("#comentariosUsuarios");
+
+      response.anime.forEach(element => {
+          let divComent = document.createElement("div");
+          let nombreUsuario = document.createElement("h3");
+          let comentario = document.createElement("p");
+
+          nombreUsuario.innerHTML = element.idUsuario;
+          comentario.innerHTML = element.comentario;
+
+          divComent.appendChild(nombreUsuario);
+          divComent.appendChild(comentario);
+          divPrincipal.appendChild(divComent);
+
+
+      });
+
+
+
+
+
+    } 
+    
+    );
 
 
 
@@ -48,7 +97,7 @@ function init(){
       }).then(res => res.json())
       .catch(error => console.error('Error:', error))
       .then(response => {
-        
+        location.href=window.location.href;
       });
 
 

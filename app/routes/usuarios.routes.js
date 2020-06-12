@@ -9,6 +9,9 @@ const usuarios = require('../controllers/usuarios.controller.js');
     // Retrieve all investigadores
     router.get('/list', usuarios.findAll);
 
+
+    router.post('/conseguirAnime', usuarios.conseguirAnime);
+
     //revisar usuario si es valido en la base de datos
     router.post('/isValidUser', usuarios.isValidUser);
 
