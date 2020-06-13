@@ -4,6 +4,7 @@ const UsuarioSchema = mongoose.Schema({
     nombre:String,
     email:String,
     password:String,
+    imgUser:String,
     animesVistos:[String]
 },{
     timestamps:true

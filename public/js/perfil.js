@@ -1,6 +1,6 @@
 window.addEventListener("load", init, false);
 
-
+let UserPerfil;
 function init(){
     if (document.cookie == "") {
         alert("Debes estar registrado");
@@ -8,8 +8,39 @@ function init(){
       }else{
     cargarInfoPerfil();
     cargarListaAnime();
+
+
+    document.getElementById("inp").addEventListener("change", readFile);
+
+    let modal = document.getElementById('configuracion');
+
+    // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+        if (event.target == modal) {
+        modal.style.display = "none";
     }
 }
+
+    
+    }
+}
+
+function readFile() {
+
+  if (this.files && this.files[0]) {
+
+    var FR= new FileReader();
+
+    FR.addEventListener("load", function(e) {
+      document.getElementById("img").src       = e.target.result;
+      document.getElementById("b64").innerHTML = e.target.result;
+    }); 
+
+    FR.readAsDataURL( this.files[0] );
+  }
+
+}
+
 
 
 function cargarInfoPerfil(){
@@ -20,23 +51,70 @@ function cargarInfoPerfil(){
     let userInfo = document.createElement("div");
     userInfo.id="infoUsuario";
     let imgUser = document.createElement("img");
+    imgUser.id = "imgUser";
+    imgUser.src="";
     let nombreUser = document.createElement("p");
     let correoUser = document.createElement("p");
     let animesVistos = document.createElement("p");
     let tiempoDeCuenta = document.createElement("p");
+    let settings = document.createElement("button");
+    settings.id="settings";
+    settings.innerHTML= "Configuración";
 
-    imgUser.src="../img/imgPerfil.jpg";
+    
     nombreUser.innerHTML = "Nickname: "+User.nombre;
     correoUser.innerHTML = "Mail: "+User.email;
     tiempoDeCuenta.innerHTML ="Cuenta Creada: "+User.createdAt.split("T")[0];
     animesVistos.innerHTML = "Animes vistos: "+User.animesVistos.length;
+
+    settings.addEventListener("click", settingPerfil);
+
 
     userInfo.appendChild(imgUser);   
     userInfo.appendChild(nombreUser);   
     userInfo.appendChild(correoUser);
     userInfo.appendChild(tiempoDeCuenta);
     userInfo.appendChild(animesVistos);
+    userInfo.appendChild(settings);
     divPrincipal.appendChild(userInfo);
+}
+
+function settingPerfil(){
+  console.log("click");
+  document.querySelector("#configuracion").style.display="inline";
+  document.querySelector("#botAcceptConfig").addEventListener("click", mandarImg);
+  document.querySelector("#botCancelarConfig").addEventListener("click",  cerrarModal);
+}
+function cerrarModal(){
+  let modal = document.getElementById('configuracion');
+   modal.style.display = "none";
+    
+}
+function mandarImg(){
+  console.log("hola");
+  let img = document.getElementById("b64").innerHTML;
+
+  let cookie = JSON.parse(document.cookie.split("=")[1]);
+  
+
+  let lista = {
+    imgUser: img,
+    usuario: cookie.nombre,
+  }
+
+  let url = "/api/usuarios/updateImg"
+  console.log(lista);
+
+  fetch(url, {
+   method: 'POST',
+    body:  JSON.stringify(lista),
+    headers:{
+      'Content-Type': 'application/json'
+    }
+  }).then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(response => {
+  });
 }
 
 function cargarListaAnime(){
@@ -69,7 +147,17 @@ function cargarListaAnime(){
     }).then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(response =>{
+      console.log(response.usuario);
+      UserPerfil = response.usuario;
+      let imgUser = document.querySelector("#imgUser");
 
+      if (UserPerfil[0].imgUser == "" || UserPerfil[0].imgUser == undefined) {
+        imgUser.src="../img/imgPerfil.jpg";
+      }else{
+        imgUser.src=UserPerfil[0].imgUser;
+      }
+
+    
         array = response.usuario[0].animesVistos;
 
         array.forEach(element => {
@@ -91,6 +179,7 @@ function cargarListaAnime(){
                 nombreAnime.innerHTML = anime.attributes.canonicalTitle;
                 imgAnime.src = anime.attributes.posterImage.small;
                 imgAnime.classList.add("imgList");
+                
                 link.href =  "./detalles.html?"+anime.id;
                 
                 animeVisto.appendChild(nombreAnime);

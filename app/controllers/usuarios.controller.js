@@ -14,7 +14,8 @@ exports.create = (req,res)=>{
     const usuario = new Usuario({
         nombre: req.body.nombre || "Usuario",
         email: req.body.email || "usuario@ejemplo.com",
-        password: req.body.password|| "usuario"
+        password: req.body.password|| "usuario",
+        imgUser: req.body.imgUser|| ""
     })
 
     usuario.save().then(data =>{
@@ -93,3 +94,45 @@ Usuario.findOne({nombre: usuario}).then(usuarioAux=>{
     });
 });
 }
+
+exports.updateImg = (req, res) => {
+    const imgUser = req.body.imgUser;
+    const usuario = req.body.usuario;
+      console.log("voy a añadir a fav");
+  Usuario.findOne({nombre: usuario}).then(usuarioAux=>{
+
+          usuarioAux.imgUser = imgUser;
+          usuarioAux.save();
+          res.status(200).send({status:true});    
+      
+     
+  }).catch(err=>{
+      res.status(500).send({
+          message: err.message || " Algo fue mal"
+      });
+  });
+  }
+
+
+
+exports.userExit = (req, res) => {
+    const usuario = req.body.email;
+
+  Usuario.find({email: usuario}).then(usuarioAux=>{
+      console.log("penemanalrescate:   "+usuarioAux.length);
+            if (usuarioAux.length > 0) {
+                res.status(200).send({status:false});
+            }else{
+                res.status(200).send({status:true});
+            }
+             
+      
+     
+  }).catch(err=>{
+      res.status(500).send({
+          message: err.message || " Algo fue mal"
+      });
+  });
+  }
+
+

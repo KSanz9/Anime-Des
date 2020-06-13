@@ -21,6 +21,12 @@ const usuarios = require('../controllers/usuarios.controller.js');
     // Update a investigadores with investigadorId
     router.post('/updateAnimeList', usuarios.updateAnimeList);
 
+    router.post('/updateImg', usuarios.updateImg);
+
+
+    
+    router.post('/userExit', usuarios.userExit);
+
     // Delete a investigadores with investigadorId
     //router.delete('/investigadores/:investigadorId', investigadores.delete);
 

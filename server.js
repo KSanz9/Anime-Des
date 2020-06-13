@@ -8,7 +8,7 @@ const app = express();
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.json({limit:"1gb"}));
 
 // Nos conectaremos a la base de datos
 const dbConfig = require('./config/database.config');

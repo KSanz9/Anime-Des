@@ -14,6 +14,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+    <link rel="icon" type="image/jpg" href="../img/icon.jpg">
+
     <script type="text/javascript" src="../js/perfil.js"></script>
 
 
@@ -24,32 +26,23 @@
         <header class="cabecera">
             <h1 class="titulo">ANIME-DES</h1>
 
-            <div id="form" class="modal">
-              <formulario  id="formulario">
-                <form class="modal-content animate"  method="POST">              
-                  <div class="container">
-                    <label><b>Nombre:</b></label>
-                    <input type="text"  name="nombre"  required>
-
-                    <label><b>e-mail:</b></label>
-                    <input type="text" name="email"  required>
-              
-                    <label><b> Password:</b></label>
-                    <input type="password" name="password"  required>
-                    
-                    <label><b>Repetir Password:</b></label>
-                    <input type="password" name="password2"  required>
-
-                    <button id="botRegistro">Registrarse</button>
-                  </div>
-              
-                  <div class="container" style="background-color:#f1f1f1">
-                   <button id="botCancelar">Cancelar</button>
-                    <span class="psw">Forgot <a href="#">password?</a></span>
-                  </div>
-                </form>
-              </formulario>
-              </div>
+            <div id="configuracion">
+              <div id="contenido">
+                <p id="b64" style="display: none;"></p>
+                <p>Cambiar imagen de Perfil:</p>
+                <img id="img" height="150" src="../img/imgPerfil.jpg">
+                
+                <input id="inp" type='file'>
+               <!--  <p>Cambiar nombre de usuario: </p>
+                <input id="NewName" type='text'>
+                
+                 --><br>
+                <br>
+                <button id="botCancelarConfig">Cancelar</button>
+                <button id="botAcceptConfig">Confirmar</button>
+               </div>
+            </div>
+  
         </header>   
     </section>
     <navigatioBar>
