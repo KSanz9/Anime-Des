@@ -40,3 +40,26 @@ exports.findAll = (req,res) => {
     });
 
 };
+
+
+exports.mirarVotacion = (req, res) => {
+    const idAnime = req.body.idAnime;
+    let sumaNotas = 0;
+
+  Votacion.find({idAnime: idAnime}).then(usuarioAux=>{
+    usuarioAux.forEach(element => {
+        console.log(usuarioAux);
+        sumaNotas+=element.nota;
+    });
+        sumaNotas = sumaNotas/usuarioAux.length;
+
+     res.status(200).send({sumaNotas});
+          
+      
+     
+  }).catch(err=>{
+      res.status(500).send({
+          message: err.message || " Algo fue mal"
+      });
+  });
+  }

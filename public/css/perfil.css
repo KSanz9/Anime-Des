@@ -25,9 +25,10 @@
 }
 
 #perfilUsuario #list{
-    overflow: auto;
+    overflow: scroll;
     border: 1px solid black;
-    width: 40%;
+    width: 150%;
+    max-height: 600px;
 
 }
 #perfilUsuario #list a{

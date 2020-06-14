@@ -10,6 +10,41 @@ function init(){
   cargarApiAnime(idAnime);
   cargarComentarios();
   //eventos
+  let cookie = JSON.parse(document.cookie.split("=")[1]);
+
+  let votacion = {
+    idAnime: idAnime,
+  }
+
+  let url = "/api/votacion/mirarVotacion"
+  console.log(votacion);
+
+  fetch(url, {
+   method: 'POST',
+    body:  JSON.stringify(votacion),
+    headers:{
+      'Content-Type': 'application/json'
+    }
+  }).then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(response => {
+    console.log(response);
+
+    let divPrincipal = document.querySelector("#anime");
+    let div = document.createElement("div");
+    let cajita = document.createElement("p");
+    cajita.innerHTML="Nota Media: "+response.sumaNotas;
+    div.id="notaMedia";
+    div.appendChild(cajita);
+    divPrincipal.appendChild(div);
+    
+    
+  });
+
+
+
+
+
   document.querySelector(".votarAnime").addEventListener("click", votarAnime);
 
   document.querySelector(".favoritoAnime").addEventListener("click", anyadirListaFav);
@@ -123,6 +158,9 @@ function init(){
       alert("Debes estar registrado");
 
     }else{
+
+
+
       let cookie = JSON.parse(document.cookie.split("=")[1]);
 
       const score = document.querySelector("select[name='score']").value;
@@ -145,6 +183,8 @@ function init(){
       }).then(res => res.json())
       .catch(error => console.error('Error:', error))
       .then(response => {
+
+        
         
       });
 

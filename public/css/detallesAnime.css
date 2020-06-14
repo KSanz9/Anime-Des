@@ -94,7 +94,7 @@ html, body{
     display: grid;
     width: 100%;
     grid-template-areas: 
-        'img name name '
+        'img name nota '
         'img synopsis synopsis'
         'status comentariosUsuario comentariosUsuario'
         'type comentariosUsuario comentariosUsuario'
@@ -105,6 +105,10 @@ html, body{
     
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     
+}
+#notaMedia{
+    grid-area: nota;
+
 }
 
 
@@ -118,10 +122,10 @@ html, body{
 #comentariosUsuarios{
     grid-area: comentariosUsuario;
     overflow: scroll;
-    height: 500px;
     border: 1px solid steelblue;
     box-shadow: 5px 5px 5px steelblue;
     margin: 5%;
+    max-height: 500px;
 }
 #comentarios button{
     margin: 2%;

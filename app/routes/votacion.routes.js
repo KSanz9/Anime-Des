@@ -10,7 +10,7 @@ const votacion = require('../controllers/votacion.controller.js');
     router.get('/list', votacion.findAll);
 
     //revisar usuario si es valido en la base de datos
-    //router.post('/isValidUser', usuarios.isValidUser);
+    router.post('/mirarVotacion', votacion.mirarVotacion);
 
     // Retrieve a single investigadores with investigadorId
     //router.get('/investigadores/:investigadorId', investigadores.findOne);
