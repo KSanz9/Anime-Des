@@ -106,10 +106,7 @@ html, body{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     
 }
-#notaMedia{
-    grid-area: nota;
 
-}
 
 
 #comentarios textarea{
@@ -150,3 +147,17 @@ html, body{
 #comentariosUsuarios h3, #comentariosUsuarios p{
     margin: 1%;
 }
+#notaMedia{
+    grid-area: nota;
+    margin-top: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 170%;
+    text-align: center;
+    width: 50%;
+    height: 40px;
+    border: 5px solid steelblue;
+    box-shadow: 10px 10px 10px steelblue;
+    color: steelblue;
+
+}
+

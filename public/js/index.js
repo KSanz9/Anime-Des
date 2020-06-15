@@ -81,7 +81,6 @@ function cargarCarrousel(animes){
 function cargarUltimosAnimes(animes){
   animes.forEach(element => {
     let lista = document.querySelector("#aniAñadidos");
-   // console.log(element);
     let divLista = document.createElement("div");
     let imgAnime = document.createElement("img");
     let nombreAnime = document.createElement("p")
@@ -133,7 +132,6 @@ function ponerUltimoEpisodio(nombreAnime,episodes){
 function animesTop(animes){
   animes.forEach(element => {
     let lista = document.querySelector("#lista");
-   // console.log(element);
     let divLista = document.createElement("div");
     let imgAnime = document.createElement("img");
     let nombreAnime = document.createElement("p")

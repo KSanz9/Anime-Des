@@ -50,3 +50,11 @@ pagina{
     border-radius: 20px;
     width: 2%;
 }
+
+#buscadorAnime{
+    margin-top: 1%;
+}
+#botBuscador{
+    background-color: steelblue;
+    color: white;
+}

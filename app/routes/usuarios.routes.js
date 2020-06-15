@@ -6,28 +6,22 @@ const usuarios = require('../controllers/usuarios.controller.js');
     // Create a new user
     router.post('/create', usuarios.create);
 
-    // Retrieve all investigadores
-    router.get('/list', usuarios.findAll);
-
-
-    router.post('/conseguirAnime', usuarios.conseguirAnime);
+    //saber si el correo se repite
+    router.post('/userExit', usuarios.userExit);
 
     //revisar usuario si es valido en la base de datos
     router.post('/isValidUser', usuarios.isValidUser);
 
-    // Retrieve a single investigadores with investigadorId
-    //router.get('/investigadores/:investigadorId', investigadores.findOne);
+    // Conseguir todos los usuarios de la base de datos
+    router.get('/list', usuarios.findAll);
 
-    // Update a investigadores with investigadorId
+    // Update la lista de aime del usuario actual
     router.post('/updateAnimeList', usuarios.updateAnimeList);
 
-    router.post('/updateImg', usuarios.updateImg);
-
-
+    //Ver los animes que tiene el usuario
+    router.post('/conseguirAnime', usuarios.conseguirAnime);
     
-    router.post('/userExit', usuarios.userExit);
-
-    // Delete a investigadores with investigadorId
-    //router.delete('/investigadores/:investigadorId', investigadores.delete);
+    //Cambiar la img del usuario
+    router.post('/updateImg', usuarios.updateImg);
 
     module.exports = router;

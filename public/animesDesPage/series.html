@@ -22,30 +22,31 @@
 
       
             <div id="form" class="modal">
-                <formulario  id="formulario">
-                  <form class="modal-content animate"  method="POST">              
-                    <div class="container">
-                      <label><b>Nombre:</b></label>
-                      <input type="text"  name="nombre"  required>
-  
-                      <label><b>e-mail:</b></label>
-                      <input type="text" name="email"  required>
-                
-                      <label><b> Password:</b></label>
-                      <input type="password" name="password"  required>
-                      
-                      <label><b>Repetir Password:</b></label>
-                      <input type="password" name="password2"  required>
-  
-                      <button id="botRegistro">Registrarse</button>
-                    </div>
-                
-                    <div class="container" style="background-color:#f1f1f1">
-                     <button id="botCancelar">Cancelar</button>
-                      <span class="psw">Forgot <a href="#">password?</a></span>
-                    </div>
-                  </form>
-                </formulario>
+              <formulario  id="formulario">
+                <form class="modal-content animate"  method="POST">              
+                  <div class="container">
+                    <label>Nombre:</label>
+                    <br>
+                    <input type="text"  name="nombre"  required>
+
+                    <label>Mail:</label>
+                    <br>
+                    <input type="text" name="email"  required>
+              
+                    <label>Password:</label>
+                    <br>
+                    <input type="password" name="password"  required>
+                    
+                    <label>Repetir Password:</label>
+                    <br>
+                    <input type="password" name="password2"  required>
+                    <button id="botCancelar">Cancelar</button>
+                    <button id="botRegistro">Registrarse</button>
+                  </div>
+              
+                   
+                </form>
+              </formulario>
                 </div>
         </header>   
     </section>
@@ -76,7 +77,11 @@
       </navigatioBar>
 
     <pagina>
-        
+          <div id="Buscador">
+            <label>Buscador</label>
+            <input type="text" name="buscador" id="buscadorAnime"></input>
+            <button id="botBuscador">Buscar</button>
+          </div>
         <section id="series">
             <div id="animes">
 

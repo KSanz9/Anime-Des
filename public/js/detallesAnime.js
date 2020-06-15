@@ -10,14 +10,11 @@ function init(){
   cargarApiAnime(idAnime);
   cargarComentarios();
   //eventos
-  let cookie = JSON.parse(document.cookie.split("=")[1]);
-
   let votacion = {
     idAnime: idAnime,
   }
 
   let url = "/api/votacion/mirarVotacion"
-  console.log(votacion);
 
   fetch(url, {
    method: 'POST',
@@ -28,12 +25,15 @@ function init(){
   }).then(res => res.json())
   .catch(error => console.error('Error:', error))
   .then(response => {
-    console.log(response);
 
     let divPrincipal = document.querySelector("#anime");
     let div = document.createElement("div");
     let cajita = document.createElement("p");
+    if (response.sumaNotas==null||response.sumaNotas == undefined) {
+      cajita.innerHTML="Nota Media: 0";
+    }else{
     cajita.innerHTML="Nota Media: "+response.sumaNotas;
+  }
     div.id="notaMedia";
     div.appendChild(cajita);
     divPrincipal.appendChild(div);
@@ -60,9 +60,7 @@ function init(){
     let animeId = {
       codigoAnime: idAnime
     }
-    console.log(animeId);
     let url = "/api/comentarios/comentAnime";
-    console.log("hago post");
 
     fetch(url, {
     
@@ -74,7 +72,6 @@ function init(){
     }).then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(response =>{
-      console.log(response.anime)
       let divPrincipal = document.querySelector("#comentariosUsuarios");
 
       response.anime.forEach(element => {
@@ -89,18 +86,10 @@ function init(){
           divComent.appendChild(comentario);
           divPrincipal.appendChild(divComent);
 
-
       });
-
-
-
-
-
     } 
-    
+
     );
-
-
 
   }
 
@@ -121,7 +110,6 @@ function init(){
       }
 
       let url = "/api/comentarios/create"
-      console.log(comentario);
 
       fetch(url, {
        method: 'POST',
@@ -134,9 +122,6 @@ function init(){
       .then(response => {
         location.href=window.location.href;
       });
-
-
-
 
     }else{
       alert("Tienes que tener algo escrito");
@@ -159,8 +144,6 @@ function init(){
 
     }else{
 
-
-
       let cookie = JSON.parse(document.cookie.split("=")[1]);
 
       const score = document.querySelector("select[name='score']").value;
@@ -172,7 +155,6 @@ function init(){
       }
 
       let url = "/api/votacion/create"
-      console.log(votacion);
 
       fetch(url, {
        method: 'POST',
@@ -207,7 +189,6 @@ function init(){
       }
 
       let url = "/api/usuarios/updateAnimeList"
-      console.log(lista);
 
       fetch(url, {
        method: 'POST',
@@ -218,7 +199,7 @@ function init(){
       }).then(res => res.json())
       .catch(error => console.error('Error:', error))
       .then(response => {
-        alert(animeName+" ha sido añadido a favoritos");
+        alert(document.querySelector(".nameAnimeDetails").innerHTML+" ha sido añadido a favoritos");
       });
   
 

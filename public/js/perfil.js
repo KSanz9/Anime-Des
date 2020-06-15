@@ -44,7 +44,6 @@ function readFile() {
 
 
 function cargarInfoPerfil(){
-    console.log("info");
     let divPrincipal = document.getElementById("perfilUsuario");
     let User = JSON.parse(document.cookie.split("=")[1]);
     //div que contiene la info del usuario
@@ -80,7 +79,7 @@ function cargarInfoPerfil(){
 }
 
 function settingPerfil(){
-  console.log("click");
+
   document.querySelector("#configuracion").style.display="inline";
   document.querySelector("#botAcceptConfig").addEventListener("click", mandarImg);
   document.querySelector("#botCancelarConfig").addEventListener("click",  cerrarModal);
@@ -91,7 +90,7 @@ function cerrarModal(){
     
 }
 function mandarImg(){
-  console.log("hola");
+
   let img = document.getElementById("b64").innerHTML;
 
   let cookie = JSON.parse(document.cookie.split("=")[1]);
@@ -103,7 +102,7 @@ function mandarImg(){
   }
 
   let url = "/api/usuarios/updateImg"
-  console.log(lista);
+
 
   fetch(url, {
    method: 'POST',
@@ -118,7 +117,6 @@ function mandarImg(){
 }
 
 function cargarListaAnime(){
-    console.log("infoAnime");
     let array
     let divPrincipal = document.getElementById("perfilUsuario");
     let animeList = document.createElement("div");
@@ -127,18 +125,14 @@ function cargarListaAnime(){
     animeList.id="list"
     animeList.appendChild(nombreList);
     
-
-
     let User = JSON.parse(document.cookie.split("=")[1]);
 
     let user = {
         idUsuario: User.nombre
       }
-
     let url = "/api/usuarios/conseguirAnime";
 
     fetch(url, {
-    
       method: 'POST',
       body:  JSON.stringify(user),
       headers:{
@@ -147,7 +141,6 @@ function cargarListaAnime(){
     }).then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(response =>{
-      console.log(response.usuario);
       UserPerfil = response.usuario;
       let imgUser = document.querySelector("#imgUser");
 
@@ -156,21 +149,16 @@ function cargarListaAnime(){
       }else{
         imgUser.src=UserPerfil[0].imgUser;
       }
-
-    
         array = response.usuario[0].animesVistos;
-
         array.forEach(element => {
             const urlApiAnime = "https://kitsu.io/api/edge/anime?filter[id]="+element;
             const fetchAnimes = fetch(urlApiAnime);
             
-            fetchAnimes.then(respuesta => {
-          
+            fetchAnimes.then(respuesta => {  
               return respuesta.json();
           
             }).then(result => {   
                 let anime = result.data[0];
-    
                 let link = document.createElement("a");
                 let animeVisto = document.createElement("div");
                 let imgAnime = document.createElement("img");
@@ -187,7 +175,6 @@ function cargarListaAnime(){
                 link.appendChild(animeVisto);
                 animeList.appendChild(link);
                 
-    
             })
         });
         divPrincipal.appendChild(animeList);

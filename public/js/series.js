@@ -6,11 +6,25 @@ let numeroLista = 1;
 function init(){
   cargarApiAnime(numeroAnime);
   document.getElementById("next").addEventListener("click", cambiarAnimesNext);  
-  document.getElementById("prev").addEventListener("click", cambiarAnimesPrev);  
+  document.getElementById("prev").addEventListener("click", cambiarAnimesPrev); 
+  document.getElementById("botBuscador").addEventListener("click", buscarAnime);
 }
 
+function buscarAnime(){
+
+  let text = document.getElementById("buscadorAnime").value;
+
+  if (text == "") {
+    location.href="../animesDesPage/series.html";
+  }else{
+    cargarApiAnimeText(text);
+  }
+
+
+}
 
 function cargarApiAnime(numero){
+  document.querySelector("#animes").innerHTML="";
     const urlApiAnime = "https://kitsu.io/api/edge/anime?filter[subtype]=TV&page[limit]=15&page[offset]="+numero;
     const fetchAnimes = fetch(urlApiAnime);
     
@@ -22,6 +36,20 @@ function cargarApiAnime(numero){
     })
   }
 
+
+  
+function cargarApiAnimeText(text){
+  document.querySelector("#animes").innerHTML="";
+  const urlApiAnime = "https://kitsu.io/api/edge/anime?filter[text]="+text;
+  const fetchAnimes = fetch(urlApiAnime);
+  
+  fetchAnimes.then(respuesta => {
+    return respuesta.json();
+
+  }).then(resposte => {
+    seriesAnime(resposte.data);
+  })
+}
 
 function seriesAnime(animes){
 

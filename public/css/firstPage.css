@@ -69,24 +69,26 @@ body, html{
 
 /*Formulario de registro*/
 #formulario input[type=text], #formulario input[type=password] {
-    width: 100%;
+    width: 80%;
     padding: 12px 20px;
     margin: 8px 0;
-    display: inline-block;
     border: 1px solid #ccc;
     border-radius: 20px;
     box-sizing: border-box;
   }
+  #formulario label {
+    width: 80%;
+  }
   
   /* Set a style for all buttons */
   #formulario button {
-    background-color: #4CAF50;
+    background-color: steelblue;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 100%;
+    width: 20%;
     border-radius: 9px;
 
   }
@@ -101,7 +103,10 @@ body, html{
     padding: 10px 18px;
     background-color: #f44336;
   }
-  
+  #cancelar{
+    width: 80%;
+    text-align: center;
+  }
   .container {
     padding: 16px;
   }
@@ -132,9 +137,8 @@ body, html{
     background-color: #fefefe;
     margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 50%; /* Could be more or less, depending on screen size */
   }
-  
   /* The Close Button (x) */
   .close {
     position: absolute;

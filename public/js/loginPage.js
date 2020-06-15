@@ -94,7 +94,6 @@ function accesoUsuario(ev) {
   }
 
   let url = "/api/usuarios/isValidUser"
-  console.log("hago post");
   fetch(url, {
     method: 'POST',
     body: JSON.stringify(user),
@@ -104,7 +103,6 @@ function accesoUsuario(ev) {
   }).then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(response => {
-      console.log('Success:', response.usuario.nombre);
       UserLoged = response.usuario;
       response.usuario.imgUser = "";
       iniciarSesion(response.usuario);
@@ -116,9 +114,8 @@ function accesoUsuario(ev) {
 }
 
 function iniciarSesion(usuario) {
-
+  
   document.cookie = "userLogged=" + JSON.stringify(usuario) + ";max-age=9592090";
-
   mostrarOpcionesUsuario();
 
 }
@@ -133,11 +130,9 @@ function registraUsuario(ev) {
   const password2 = document.querySelector("input[name='password2']").value;
 
   if (!testEmail(email)) {
-    console.log("correo erroneo");
     return;
   }
   if (!testPasswords(password, password2)) {
-    console.log("password erroneo");
     return;
   }
   let user = {
@@ -145,8 +140,7 @@ function registraUsuario(ev) {
   }
 
 
-  let url = "/api/usuarios/userExit"
-  console.log(user);
+  let url = "/api/usuarios/userExit";
 
   fetch(url, {
     method: 'POST',
@@ -158,7 +152,6 @@ function registraUsuario(ev) {
     .catch(error => console.error('Error:', error))
     .then(response => {
 
-      console.log(response);
       if (response.status) {
         let user = {
           nombre: nombre,
@@ -167,8 +160,7 @@ function registraUsuario(ev) {
           imgUser: ""
         }
 
-        let url = "/api/usuarios/create"
-        console.log(user);
+        let url = "/api/usuarios/create";
 
         fetch(url, {
           method: 'POST',
